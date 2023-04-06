@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Response
 
 import json
 
@@ -10,7 +10,7 @@ app = FastAPI()
 
 url = "https://www.tff.org/default.aspx?pageID=198"
 
-def tff_data():
+def tff_data(data_type):
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "html.parser")
 
@@ -44,9 +44,13 @@ def tff_data():
     with open('table.json', 'r', encoding="utf-8") as json_file:
         json_object = json.load(json_file)
 
-    return json_object
+    if data_type == "json_file":
+        return json_object
+    elif data_type == "live":
+        return teams
 
 
 @app.get("/")
 async def root():
-    return tff_data()
+    json_str = json.dumps(tff_data("live"), indent = 4, default = str, ensure_ascii=False)
+    return Response(content=json_str, media_type='application/json')
