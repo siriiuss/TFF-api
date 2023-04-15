@@ -34,23 +34,15 @@ def tff_data(data_type, url="https://www.tff.org/default.aspx?pageID=198"):
         }
         teams.append(team_data)
 
-    with open("table.json", "w", encoding="utf-8") as f:
-        json.dump(teams, f, ensure_ascii=False, indent=4)
-    f.close()
 
-    with open('table.json', 'r', encoding="utf-8") as json_file:
-        json_object = json.load(json_file)
 
-    if data_type == "json_file":
-        return json_object
-    elif data_type == "live":
-        return teams
+    return teams
 
 
 @app.get("/")
 async def root():
-    json_str = json.dumps(tff_data("json_file"), indent = 4, default = str, ensure_ascii=False)
-    return Response(content=json_str, media_type='application/json')
+    return RedirectResponse("/live")
+
 
 @app.get("/live")
 async def live():
