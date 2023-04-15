@@ -14,7 +14,7 @@ def tff_data(data_type, url="https://www.tff.org/default.aspx?pageID=198"):
 
     table = soup.find("table", {"class": "s-table"})
 
-    teams = []  # Tüm takımları saklayacak bir liste oluşturun
+    teams = []
 
     rows = table.findAll("tr")[1:]
 
@@ -34,16 +34,23 @@ def tff_data(data_type, url="https://www.tff.org/default.aspx?pageID=198"):
         }
         teams.append(team_data)
 
+    with open("table.json", "w", encoding="utf-8") as f:
+        json.dump(teams, f, ensure_ascii=False, indent=4)
+    f.close()
 
+    with open('table.json', 'r', encoding="utf-8") as json_file:
+        json_object = json.load(json_file)
 
-    return teams
+    if data_type == "json_file":
+        return json_object
+    elif data_type == "live":
+        return teams
 
 
 @app.get("/")
 async def root():
-    return RedirectResponse("/live")
-    # json_str = json.dumps(tff_data("live"), indent = 4, default = str, ensure_ascii=False)
-    # return Response(content=json_str, media_type='application/json')
+    json_str = json.dumps(tff_data("json_file"), indent = 4, default = str, ensure_ascii=False)
+    return Response(content=json_str, media_type='application/json')
 
 @app.get("/live")
 async def live():
