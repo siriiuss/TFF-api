@@ -8,3 +8,10 @@ For full documentation visit [here](https://siriiuss.github.io/TFF-api/).
 * `TFF Second League` - [visit](https://www.tff.org/default.aspx?pageID=976).
 * `TFF Third League` - [visit](https://www.tff.org/default.aspx?pageID=971).
 * `TFF Amateur League` - [visit](https://www.tff.org/default.aspx?pageID=1596).
+
+
+## Example usages
+
+https://tffapi-1-y6918016.deta.app/live
+
+https://tffapi-1-y6918016.deta.app/live/league/tff-2
