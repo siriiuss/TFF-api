@@ -49,6 +49,11 @@ def tff_data(data_type, url="https://www.tff.org/default.aspx?pageID=198"):
 
 @app.get("/")
 async def root():
+    json_str = json.dumps(tff_data("live"), indent = 4, default = str, ensure_ascii=False)
+    return Response(content=json_str, media_type='application/json'
+
+@app.get("/json")
+async def json_type():
     json_str = json.dumps(tff_data("json_file"), indent = 4, default = str, ensure_ascii=False)
     return Response(content=json_str, media_type='application/json')
 
