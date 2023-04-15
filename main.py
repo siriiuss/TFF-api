@@ -1,6 +1,9 @@
-from fastapi import FastAPI, Response
-from fastapi.responses import RedirectResponse
+from fastapi import FastAPI, Response, HTTPException
+from fastapi.responses import RedirectResponse, HTMLResponse
 import json
+import websockets
+
+from time import sleep
 
 import requests
 from bs4 import BeautifulSoup
@@ -14,7 +17,7 @@ def tff_data(data_type, url="https://www.tff.org/default.aspx?pageID=198"):
 
     table = soup.find("table", {"class": "s-table"})
 
-    teams = []
+    teams = []  # Tüm takımları saklayacak bir liste oluşturun
 
     rows = table.findAll("tr")[1:]
 
@@ -43,6 +46,22 @@ def tff_data(data_type, url="https://www.tff.org/default.aspx?pageID=198"):
 async def root():
     return RedirectResponse("/live")
 
+@app.get("/json")
+async def json_type():
+    html = """
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <title>Unavaible</title>
+     <meta http-equiv="refresh" content="10;URL='/live'" />
+    </head>
+    <body style="background-color: #121212;">
+    <p style="color: white; font-size: 14px;">The JSON type is unavailable due to system capacity issues. You will be redirected to Live in 10 seconds. For more detail <a href="" style="color: white;"> check documentation</a>
+    </p>
+    </body>
+    </html>
+    """
+    return HTMLResponse(html)
 
 @app.get("/live")
 async def live():
