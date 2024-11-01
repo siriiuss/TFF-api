@@ -1,6 +1,6 @@
 beautifulsoup4==4.12.1
 fastapi==0.109.1
-requests==2.32.2
+requests==2.32.3
 uvicorn==0.21.1
 websockets==11.0
 
