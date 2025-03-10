@@ -1,5 +1,5 @@
 # TFF-api
-Turkish Futball Federation Scoreboards API
+Turkish Football Federation Scoreboards API
 
 For full documentation visit [here](https://siriiuss.github.io/TFF-api/).
 
