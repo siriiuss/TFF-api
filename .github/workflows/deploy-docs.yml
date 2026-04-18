@@ -4,13 +4,12 @@ on:
   push:
     branches:
       - main
-      - master
 
 permissions:
   contents: write
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -22,8 +21,9 @@ jobs:
           python-version: "3.11"
 
       - name: Install Dependencies
-        # Added mkdocs-shadcn here so GitHub knows how to build it
-        run: pip install mkdocs mkdocs-shadcn
+        run: |
+          pip install mkdocs mkdocs-shadcn
 
-      - name: Build and Deploy to GitHub Pages
-        run: mkdocs gh-pages --force
+      - name: Build and Deploy
+        # Fix: The correct command is 'gh-deploy', not 'gh-pages'
+        run: mkdocs gh-deploy --force
