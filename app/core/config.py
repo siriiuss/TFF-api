@@ -4,7 +4,7 @@ class Settings:
     TFF_URL: str = "https://www.tff.org/default.aspx?pageID="
     HTTP_TIMEOUT: int = 10
     CACHE_EXPIRE: int = 600
-    DESCRIPTION: str = "Asynchronous API for Turkish Football Leagues"
+    DESCRIPTION: str = "Asynchronous Scraper for Turkish Football Leagues"
 
     # Single group structure (BASİT LİGLER: Tek grup yapısı)
     LEAGUES = {
