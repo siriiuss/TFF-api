@@ -25,7 +25,7 @@ An asynchronous REST API to scrape real-time standings and fixtures from the off
 
 ## Usage
 
-Docs: https://siriiuss.github.io/TFF-Leagues-API/docs/
+Docs: https://siriiuss.github.io/TFF-Leagues-API/
 
 Start the server:
 ```bash
