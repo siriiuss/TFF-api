@@ -26,7 +26,7 @@ jobs:
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         # Ensure test-specific packages are installed
-        pip install pytest pytest-asyncio respx httpx fastapi starlette beautifulsoup4 lxml fastapi-cache2
+        pip install pytest pytest-asyncio respx httpx fastapi starlette beautifulsoup4 lxml fastapi-cache2 jinja2
 
     - name: Run Pytest
       run: |
