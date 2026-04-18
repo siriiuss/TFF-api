@@ -12,7 +12,7 @@ An asynchronous REST API to scrape real-time standings and fixtures from the off
 
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/yourusername/tff-leagues-api.git](https://github.com/yourusername/tff-leagues-api.git)
+   git clone git clone https://github.com/yourusername/tff-leagues-api.git
    cd tff-leagues-api
    ```
 
