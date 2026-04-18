@@ -59,4 +59,4 @@ pytest tests/ -v
 ```
 
 ## License
-MIT
+GPLv3
