@@ -6,7 +6,6 @@ from datetime import datetime
 
 
 async def fetch_team_standings(page_id: str) -> StandingsResponse:
-    # URL'i dinamik oluşturuyoruz
     url = f"{settings.TFF_URL}{page_id}"
 
     async with httpx.AsyncClient(timeout=settings.HTTP_TIMEOUT) as client:
@@ -28,11 +27,11 @@ async def fetch_team_standings(page_id: str) -> StandingsResponse:
         if len(cols) < 9: continue
 
         raw_info = cols[0].text.strip()
-        sira_no, takim_adi = raw_info.split(".", 1) if "." in raw_info else (0, raw_info)
+        rank, team_name = raw_info.split(".", 1) if "." in raw_info else (0, raw_info)
 
         team_data = TeamStanding(
-            rank=int(sira_no),
-            team_name=takim_adi.strip(),
+            rank=int(rank),
+            team_name=team_name.strip(),
             played=int(cols[1].text.strip()),
             won=int(cols[2].text.strip()),
             drawn=int(cols[3].text.strip()),

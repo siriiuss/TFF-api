@@ -6,22 +6,18 @@ from app.core.config import settings
 from datetime import datetime
 
 async def fetch_multi_group_standings(page_id: str, group_index: int = 0) -> StandingsResponse:
-    # Senin config dosyanda "TFF_URL" olarak geçtiği için burayı TFF_URL yaptık
     base_url = f"{settings.TFF_URL}{page_id}"
 
     async with httpx.AsyncClient(timeout=settings.HTTP_TIMEOUT) as client:
-        # 1. ADIM: Ligin ana sayfasına gir ve grup butonlarındaki grupID'leri topla
         response = await client.get(base_url)
         response.raise_for_status()
         soup = BeautifulSoup(response.content, "lxml")
 
-        # href içinde "grupID=" geçen tüm linkleri bul
         group_links = soup.find_all("a", href=re.compile(r"grupID=(\d+)", re.IGNORECASE))
 
         unique_groups = []
         seen_ids = set()
 
-        # Linkleri temizle ve benzersiz olanları sırasıyla listeye ekle (1. Grup, 2. Grup vb.)
         for link in group_links:
             match = re.search(r"grupID=(\d+)", link["href"], re.IGNORECASE)
             if match:
@@ -33,31 +29,26 @@ async def fetch_multi_group_standings(page_id: str, group_index: int = 0) -> Sta
                         "name": link.text.strip()
                     })
 
-        # Eğer sayfada hiç grupID bulunamadıysa (veya tek gruptan oluşuyorsa) direkt o sayfayı parse et
         if not unique_groups:
             return parse_html_to_standings(soup, page_id, group_name="Genel/1. Grup")
 
-        # 2. ADIM: İstenen indeksin geçerli olup olmadığını kontrol et
+            # Validate the requested index
         if group_index < 0 or group_index >= len(unique_groups):
             raise Exception(
-                f"Geçersiz grup indeksi. Bu ligde toplam {len(unique_groups)} grup var. (İndeks 0'dan başlar, yani maksimum {len(unique_groups) - 1} girebilirsiniz.)"
+                f"Invalid group index. This league has {len(unique_groups)} groups available."
             )
 
-        # Kullanıcının istediği grubun ID'sini ve adını al
         target_group = unique_groups[group_index]
         grup_id = target_group["id"]
         group_name = target_group["name"]
 
-        # 3. ADIM: Doğrudan o grubun URL'sine temiz bir GET isteği at
         group_url = f"{base_url}&grupID={grup_id}"
         group_response = await client.get(group_url)
         group_response.raise_for_status()
         group_soup = BeautifulSoup(group_response.content, "lxml")
 
-        # 4. ADIM: Dönen sayfayı parse et
         return parse_html_to_standings(group_soup, page_id, group_name=group_name)
 
-# (parse_html_to_standings fonksiyonu)
 def parse_html_to_standings(soup: BeautifulSoup, page_id: str, group_name: str) -> StandingsResponse:
     table = soup.find("table", {"class": "s-table"})
     if not table:
@@ -73,11 +64,11 @@ def parse_html_to_standings(soup: BeautifulSoup, page_id: str, group_name: str) 
         if len(cols) < 9: continue
 
         raw_info = cols[0].text.strip()
-        sira_no, takim_adi = raw_info.split(".", 1) if "." in raw_info else (0, raw_info)
+        rank, team_name = raw_info.split(".", 1) if "." in raw_info else (0, raw_info)
 
         team_data = TeamStanding(
-            rank=int(sira_no),
-            team_name=takim_adi.strip(),
+            rank=int(rank),
+            team_name=team_name.strip(),
             played=int(cols[1].text.strip()),
             won=int(cols[2].text.strip()),
             drawn=int(cols[3].text.strip()),

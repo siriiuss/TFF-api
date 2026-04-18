@@ -12,7 +12,6 @@ class Settings:
         "trendyol-1-league": "142",            # Trendyol 1. Lig
         "turkcell-womens-super-league": "1000",# Turkcell Kadın Futbol Süper Ligi
         "turk-telekom-e-super-league": "1610", # Türk Telekom eSüper Lig
-        "tff-futsal-league": "1640"            # Futsal Ligi
     }
 
     # MULTI-GROUP LEAGUES: Multiple groups/sections (ÇOKLU GRUP LİGLERİ: Çoklu grup/bölüm yapısı)
