@@ -1,6 +1,7 @@
-beautifulsoup4==4.12.3
-fastapi==0.109.1
-requests==2.33.0
-uvicorn==0.21.1
-websockets==11.0
-
+fastapi
+fastapi-cache2
+uvicorn
+httpx
+beautifulsoup4
+lxml
+pydantic

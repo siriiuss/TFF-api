@@ -1,0 +1,59 @@
+# Virtual Environments (Sanal Ortam Klasörleri)
+venv/
+.venv/
+env/
+.env_folder/
+env.bak/
+venv.bak/
+
+# Environment Variables & Secrets (Gizli Değişkenler ve API Anahtarları)
+.env
+.env.local
+.env.*
+
+# Compiled Python files (Derlenmiş Python Dosyaları)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / Packaging (Paketleme Dosyaları)
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDE / Editor Files (Editör Ayar Dosyaları)
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files (İşletim Sistemi Dosyaları)
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs and Databases (Loglar ve Yerel Veritabanları)
+*.log
+*.sqlite3
+db.sqlite3
+
+# Caching (Önbellek Dosyaları)
+.cache/
+.pytest_cache/
