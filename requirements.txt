@@ -1,7 +1,9 @@
 fastapi
-fastapi-cache2
 uvicorn
 httpx
 beautifulsoup4
 lxml
-pydantic
+fastapi-cache2
+pytest
+pytest-asyncio
+respx
