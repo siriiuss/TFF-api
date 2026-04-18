@@ -1,9 +1,9 @@
-# Welcome to TFF Leagues API
+# Welcome to TFF Leagues Scraper
 
-This is the official documentation for the **TFF Leagues API**, a high-performance asynchronous REST API built with FastAPI.
+This is the official documentation for the **TFF Leagues Scraper**.
 
 ## Overview
-The API scrapes real-time football league standings from the official Turkish Football Federation (TFF) website without requiring any API keys.
+Scrapes real-time football league standings from the official Turkish Football Federation (TFF) website.
 
 ### Key Features
 * **Real-time Data:** Always up-to-date with TFF servers.
