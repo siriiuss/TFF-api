@@ -25,6 +25,8 @@ An asynchronous REST API to scrape real-time standings and fixtures from the off
 
 ## Usage
 
+Docs: https://siriiuss.github.io/TFF-Leagues-API/docs/
+
 Start the server:
 ```bash
 uvicorn app.main:app --reload
