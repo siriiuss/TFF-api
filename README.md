@@ -1,4 +1,4 @@
-# TFF Leagues API
+# TFF Leagues Scraper
 
 An asynchronous REST API to scrape real-time standings and fixtures from the official Turkish Football Federation (TFF) website.
 
@@ -12,7 +12,7 @@ An asynchronous REST API to scrape real-time standings and fixtures from the off
 
 1. Clone the repository:
    ```bash
-   git clone git clone https://github.com/yourusername/tff-leagues-api.git
+   git clone git clone https://github.com/yourusername/tff-leagues-scraper.git
    cd tff-leagues-api
    ```
 
@@ -25,7 +25,7 @@ An asynchronous REST API to scrape real-time standings and fixtures from the off
 
 ## Usage
 
-Docs: https://siriiuss.github.io/TFF-Leagues-API/
+Docs: https://siriiuss.github.io/TFF-Leagues-Scraper/
 
 Start the server:
 ```bash
