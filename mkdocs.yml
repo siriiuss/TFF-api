@@ -1,0 +1,15 @@
+site_name: TFF Leagues API
+site_description: Official documentation for the TFF Leagues API
+site_author: github.com/siriiuss
+
+theme:
+  name: shadcn
+  palette:
+    primary: indigo
+    accent: blue
+  color_mode: dark
+
+nav:
+  - Home: index.md
+  - Endpoints: endpoints.md
+  - Architecture: architecture.md
