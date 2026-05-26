@@ -21,3 +21,26 @@ class StandingsResponse(BaseModel):
     season: str = Field(..., description="The season period (e.g., 2025-2026)")
     last_updated: str = Field(..., description="Timestamp of the last data update")
     data: List[TeamStanding]
+
+
+class PenaltyRecord(BaseModel):
+    license_no: str = Field(..., description="Player license number")
+    player_name: str = Field(..., description="Full name of the player")
+    penalty_match: str = Field(..., description="Match in which the penalty was received")
+    penalty_league: str = Field(..., description="League/organization in which the penalty was received")
+    penalty_group: Optional[str] = Field(None, description="Group stage of the penalty match, if any")
+    suspension_match_date: str = Field(..., description="Date of the match where suspension will be served")
+    suspension_match: str = Field(..., description="Match where the suspension will be served")
+    suspension_league: str = Field(..., description="League/organization where the suspension will be served")
+    suspension_group: Optional[str] = Field(None, description="Group stage of the suspension match, if any")
+    penalty_type: str = Field(..., description="Type of penalty (e.g. Kırmızı Kart, Sarı Kart, Men)")
+
+    class Config:
+        populate_by_name = True
+
+
+class PenaltyResponse(BaseModel):
+    league_name: str = Field(..., description="Name of the league queried")
+    season: str = Field(..., description="The season period (e.g., 2025-2026)")
+    last_updated: str = Field(..., description="Timestamp of the last data update")
+    data: List[PenaltyRecord]

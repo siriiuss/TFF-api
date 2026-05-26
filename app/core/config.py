@@ -2,6 +2,7 @@ class Settings:
     PROJECT_NAME: str = "TFF Leagues API"
     VERSION: str = "2.3.0"
     TFF_URL: str = "https://www.tff.org/default.aspx?pageID="
+    CEZA_URL: str = "https://www.tff.org/default.aspx?pageID=633"
     HTTP_TIMEOUT: int = 10
     CACHE_EXPIRE: int = 600
     DESCRIPTION: str = "Asynchronous Scraper for Turkish Football Leagues"
@@ -30,6 +31,29 @@ class Settings:
         "u14-development-league": "1755",      # U14 Gelişim Ligi
         "u13-development-league": "1762",      # U13 Gelişim Ligi
         "youth-infrastructure-development": "1494" # Futbol Altyapı Gelişim Ligi
+    }
+
+    # PENALTY LEAGUES: Leagues available on the cezalılar (suspended players) page
+    # Values are display name prefixes matched against the TFF ceza page dropdown
+    PENALTY_LEAGUES = {
+        "trendyol-super-league":        "Trendyol Süper Lig",
+        "trendyol-1-league":            "Trendyol 1. Lig",
+        "nesine-2-league":              "Nesine 2. Lig",
+        "nesine-3-league":              "Nesine 3. Lig",
+        "u19-paf-league":               "U19 PAF",
+        "ziraat-cup":                   "Ziraat Türkiye Kupası",
+        "turkcell-womens-super-league": "Turkcell Kadın Futbol Süper Ligi",
+        "regional-amateur-league-bal":  "BÖLGESEL AMATÖR LİG",
+        "womens-1-league":              "Kadınlar 1. Ligi",
+        "womens-2-league":              "Kadınlar 2. Ligi",
+        "womens-3-league":              "Kadınlar 3. Ligi",
+        "turk-telekom-e-super-league":  "Türk Telekom eSüper Lig",
+        "u19-development-league":       "U19 Gelişim Ligi",
+        "u17-development-league":       "U17 Gelişim Ligi",
+        "u16-development-league":       "U16 Gelişim Ligi",
+        "u15-development-league":       "U15 Gelişim Ligi",
+        "u14-development-league":       "U14 Gelişim Ligi",
+        "u13-development-league":       "U13 Gelişim Ligi",
     }
 
 settings = Settings()
